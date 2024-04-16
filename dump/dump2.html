@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Send Message to Telegram</title>
+  </head>
+  <body>
+    <input type="email" name="email" id="email" placeholder="Your Email" />
+    <input type="text" name="name" id="name" placeholder="Your Name" />
+    <input type="text" />
+    <textarea name="message" id="message" placeholder="Your Message"></textarea>
+    <button type="button" onclick="sendMessageToTelegram()">
+      Send to Telegram
+    </button>
+
+    <script>
+      function sendMessageToTelegram() {
+        // Mendapatkan nilai dari input
+        var email = document.getElementById("email").value;
+        var name = document.getElementById("name").value;
+        var message = document.getElementById("message").value;
+        var number = document.getElementById("nomor").value;
+
+        // Token bot Telegram dari BotFather
+        var token = "7016813527:AAF54N1Y773_QFCkDES7zr4EYiQLWOG48m0"; // Ganti dengan token bot Anda
+
+        // ID grup atau pengguna penerima pesan
+        var chat_id = -4157786119; // Ganti dengan ID grup atau pengguna tujuan
+
+        // Pesan yang akan dikirim
+        var text =
+          "Email: " + email + "\nNama: " + name + "\nNomor: " + number + "\nPesan: " + message;
+
+        // URL untuk mengirim pesan ke bot Telegram menggunakan API
+        var url =
+          "https://api.telegram.org/bot" +
+          token +
+          "/sendMessage?chat_id=" +
+          chat_id +
+          "&text=" +
+          encodeURIComponent(text);
+
+        // Kirim pesan menggunakan XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
